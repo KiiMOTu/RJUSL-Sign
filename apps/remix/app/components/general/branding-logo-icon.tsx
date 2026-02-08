@@ -1,18 +1,7 @@
-import type { SVGAttributes } from 'react';
+import type { ImgHTMLAttributes } from 'react';
 
-export type LogoProps = SVGAttributes<SVGSVGElement>;
+export type LogoProps = ImgHTMLAttributes<HTMLImageElement>;
 
-export const BrandingLogoIcon = ({ ...props }: LogoProps) => {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113 53" {...props}>
-      <path
-        fill="#1299d5"
-        d="M86 1.2c-9 0-17 4.7-21.5 11.8h30c2.1 0 3.8 1.7 3.8 3.8 0 2.1-1.7 3.8-3.8 3.8H61.3c-.3 1.3-.5 2.6-.6 3.9H87c2.1 0 3.8 1.7 3.8 3.8s-1.7 3.8-3.8 3.8H61.2c.3 1.4.7 2.7 1.2 4h17c2.1 0 3.8 1.7 3.8 3.8 0 2.1-1.7 3.8-3.8 3.8H67.1c4.7 5.2 11.4 8.5 18.9 8.5 14 0 25.4-11.4 25.4-25.4.1-14.2-11.3-25.6-25.4-25.6z"
-      />
-      <path
-        fill="currentColor"
-        d="M51.5 3.2h-6.1c-1.1 0-1.6.5-1.6 1.5v33.1c0 1.6-.3 2.7-.9 3.3-.6.7-1.7 1-3.3 1h-3.4l3.7 8H41c3.8 0 6.7-1 8.8-3.1 2.1-2.1 3.1-5 3.1-8.8V4.7c.1-1-.4-1.5-1.4-1.5zM33.9 48.4l-7.8-16.3v-.3c4.3-1.8 6.5-5.5 6.5-11v-5.7c0-3.8-1.1-6.7-3.2-8.8-2.1-2.1-5.1-3.1-8.9-3.1H3.1c-1 0-1.5.5-1.5 1.5v14.6h9.3V12c0-.5.3-.8.8-.8h7.2c1.6 0 2.7.3 3.4 1 .7.7 1.1 1.8 1.1 3.3v5.7c0 1.5-.4 2.5-1.1 3.2-.7.7-1.9 1-3.4 1H1.5v23.2c0 1 .5 1.5 1.5 1.5h6.2c1 0 1.5-.5 1.5-1.5v-15c0-.5.3-.8.9-.8h4.9l7.3 15.8c.2.6.6 1 .9 1.2.4.2 1 .3 1.9.3h5.9c1.4.1 1.8-.5 1.4-1.7z"
-      />
-    </svg>
-  );
+export const BrandingLogoIcon = ({ alt = 'RJ Utility Services', ...props }: LogoProps) => {
+  return <img src="/static/rjusl-logo.jpeg" alt={alt} {...props} />;
 };
