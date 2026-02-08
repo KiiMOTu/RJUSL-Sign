@@ -6,9 +6,8 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react/macro';
 import { Trans } from '@lingui/react/macro';
 import type * as DialogPrimitive from '@radix-ui/react-dialog';
-import { ExternalLinkIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import { Link, useSearchParams } from 'react-router';
+import { useSearchParams } from 'react-router';
 import { match } from 'ts-pattern';
 import type { z } from 'zod';
 
@@ -413,33 +412,6 @@ const BillingPlanForm = ({
             </div>
           </button>
         ))}
-
-        <Link
-          to="https://documen.so/enterprise-cta"
-          target="_blank"
-          className="flex items-center space-x-2 rounded-md border bg-muted/30 p-4"
-        >
-          <div className="flex-1 font-normal">
-            <p className="font-medium text-muted-foreground">
-              <Trans>Enterprise</Trans>
-            </p>
-            <p className="flex flex-row items-center gap-1 text-muted-foreground">
-              <Trans>Contact sales here</Trans>
-              <ExternalLinkIcon className="h-4 w-4" />
-            </p>
-          </div>
-        </Link>
-      </div>
-
-      <div className="mt-6 text-center">
-        <Link
-          to="/pricing"
-          className="flex items-center justify-center gap-1 text-sm text-primary hover:text-primary/80 hover:underline"
-          target="_blank"
-        >
-          <Trans>Compare all plans and features in detail</Trans>
-          <ExternalLinkIcon className="h-4 w-4" />
-        </Link>
       </div>
     </div>
   );

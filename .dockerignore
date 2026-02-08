@@ -34,3 +34,15 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Exclude apps/packages not needed for the Remix Docker build
+apps/documentation
+apps/openpage-api
+packages/app-tests
+
+# Docs and editor config
+*.md
+!README.md
+.github
+.vscode
+.claude

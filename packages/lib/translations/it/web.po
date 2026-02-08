@@ -1483,7 +1483,6 @@ msgstr "Una email con questo indirizzo esiste già."
 #: apps/remix/app/components/forms/reset-password.tsx
 #: apps/remix/app/components/forms/signup.tsx
 #: apps/remix/app/components/forms/token.tsx
-#: apps/remix/app/components/general/claim-account.tsx
 #: apps/remix/app/components/general/document-signing/access-auth-2fa-form.tsx
 #: apps/remix/app/components/general/document-signing/access-auth-2fa-form.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
@@ -2157,10 +2156,6 @@ msgstr ""
 msgid "By proceeding with your electronic signature, you acknowledge and consent that it will be used to sign the given document and holds the same legal validity as a handwritten signature. By completing the electronic signing process, you affirm your understanding and acceptance of these conditions."
 msgstr "Procedendo con la tua firma elettronica, riconosci e acconsenti che sarà utilizzata per firmare il documento dato e ha la stessa validità legale di una firma autografa. Completando il processo di firma elettronica, affermi la tua comprensione e accettazione di queste condizioni."
 
-#: apps/remix/app/components/forms/signup.tsx
-msgid "By proceeding, you agree to our <0>Terms of Service</0> and <1>Privacy Policy</1>."
-msgstr "Procedendo, accetti i nostri <0>Termini di Servizio</0> e <1>Informativa sulla Privacy</1>."
-
 #: apps/remix/app/routes/_unauthenticated+/articles.signature-disclosure.tsx
 msgid "By using the electronic signature feature, you are consenting to conduct transactions and receive disclosures electronically. You acknowledge that your electronic signature on documents is binding and that you accept the terms outlined in the documents you are signing."
 msgstr "Utilizzando la funzione di firma elettronica, acconsenti a effettuare transazioni e ricevere divulgazioni elettronicamente. Riconosci che la tua firma elettronica sui documenti è vincolante e accetti i termini delineati nei documenti che stai firmando."
@@ -2387,10 +2382,6 @@ msgstr "Scegli il tuo metodo di autenticazione preferito:"
 msgid "Choose..."
 msgstr "Scegli..."
 
-#: apps/remix/app/components/general/claim-account.tsx
-msgid "Claim account"
-msgstr "Rivendica account"
-
 #: apps/remix/app/routes/_authenticated+/admin+/_layout.tsx
 msgid "Claims"
 msgstr "Richieste"
@@ -2481,10 +2472,6 @@ msgstr "Chiudi"
 #: apps/remix/app/components/embed/authoring/configure-document-advanced-settings.tsx
 msgid "Communication"
 msgstr "Comunicazione"
-
-#: apps/remix/app/components/dialogs/organisation-create-dialog.tsx
-msgid "Compare all plans and features in detail"
-msgstr "Confronta tutti i piani e le caratteristiche in dettaglio"
 
 #: apps/remix/app/components/embed/embed-direct-template-client-page.tsx
 #: apps/remix/app/components/embed/embed-direct-template-client-page.tsx
@@ -2652,10 +2639,6 @@ msgstr "Consenso alle transazioni elettroniche"
 #: apps/remix/app/routes/_unauthenticated+/articles.signature-disclosure.tsx
 msgid "Contact Information"
 msgstr "Informazioni di contatto"
-
-#: apps/remix/app/components/dialogs/organisation-create-dialog.tsx
-msgid "Contact sales here"
-msgstr "Contatta le vendite qui"
 
 #: apps/remix/app/routes/_authenticated+/admin+/site-settings.tsx
 msgid "Content"
@@ -3832,7 +3815,6 @@ msgstr "Il documento sarà eliminato definitivamente"
 #: apps/remix/app/components/general/app-nav-mobile.tsx
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-upload-page.tsx
 #: apps/remix/app/components/general/skeletons/document-edit-skeleton.tsx
-#: apps/remix/app/components/general/user-profile-timur.tsx
 #: apps/remix/app/components/tables/admin-dashboard-users-table.tsx
 #: apps/remix/app/components/tables/organisation-insights-table.tsx
 #: apps/remix/app/components/tables/organisation-insights-table.tsx
@@ -4126,7 +4108,6 @@ msgstr "Email"
 
 #: apps/remix/app/components/dialogs/organisation-member-invite-dialog.tsx
 #: apps/remix/app/components/forms/send-confirmation-email.tsx
-#: apps/remix/app/components/general/claim-account.tsx
 msgid "Email address"
 msgstr "Indirizzo email"
 
@@ -4398,7 +4379,6 @@ msgstr "Inserisci i dettagli del tuo marchio"
 msgid "Enter your credentials to continue."
 msgstr ""
 
-#: apps/remix/app/components/general/claim-account.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-complete-dialog.tsx
 msgid "Enter your email"
 msgstr "Inserisci la tua email"
@@ -4407,7 +4387,6 @@ msgstr "Inserisci la tua email"
 msgid "Enter your email address to receive the completed document."
 msgstr "Inserisci il tuo indirizzo email per ricevere il documento completato."
 
-#: apps/remix/app/components/general/claim-account.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-complete-dialog.tsx
 msgid "Enter your name"
 msgstr "Inserisci il tuo nome"
@@ -4425,10 +4404,6 @@ msgstr "Inserisci la tua password"
 #: apps/remix/app/components/general/document-signing/document-signing-text-field.tsx
 msgid "Enter your text here"
 msgstr "Inserisci il tuo testo qui"
-
-#: apps/remix/app/components/dialogs/organisation-create-dialog.tsx
-msgid "Enterprise"
-msgstr "Impresa"
 
 #: apps/remix/app/components/dialogs/envelope-distribute-dialog.tsx
 msgid "Envelope distributed"
@@ -5078,10 +5053,6 @@ msgstr ""
 msgid "Here's how it works:"
 msgstr "Ecco come funziona:"
 
-#: apps/remix/app/components/general/user-profile-timur.tsx
-msgid "Hey I’m Timur"
-msgstr "Ciao, sono Timur"
-
 #: packages/email/templates/bulk-send-complete.tsx
 msgid "Hi {userName},"
 msgstr "Ciao {userName},"
@@ -5486,12 +5457,6 @@ msgstr "Ultimo aggiornamento il"
 #: apps/remix/app/components/filters/date-range-filter.tsx
 msgid "Last Year"
 msgstr "Ultimo anno"
-
-#: apps/remix/app/components/forms/subscription-claim-form.tsx
-#: apps/remix/app/components/general/admin-license-card.tsx
-#: apps/remix/app/routes/_authenticated+/admin+/organisations.$id.tsx
-msgid "Learn more"
-msgstr ""
 
 #: apps/remix/app/components/dialogs/organisation-leave-dialog.tsx
 msgid "Leave"
@@ -5946,7 +5911,6 @@ msgstr "N/A"
 #: apps/remix/app/components/embed/authoring/configure-document-recipients.tsx
 #: apps/remix/app/components/embed/authoring/configure-document-recipients.tsx
 #: apps/remix/app/components/forms/subscription-claim-form.tsx
-#: apps/remix/app/components/general/claim-account.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-name-field.tsx
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-fields-drag-drop.tsx
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-recipient-form.tsx
@@ -6224,8 +6188,8 @@ msgid "On this page, you can create a new webhook."
 msgstr "In questa pagina, puoi creare un nuovo webhook."
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.tokens.tsx
-msgid "On this page, you can create and manage API tokens. See our <0>Documentation</0> for more information."
-msgstr "Su questa pagina, puoi creare e gestire token API. Consulta la nostra <0>Documentazione</0> per maggiori informazioni."
+msgid "On this page, you can create and manage API tokens."
+msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks._index.tsx
 msgid "On this page, you can create new Webhooks and manage the existing ones."
@@ -6524,7 +6488,6 @@ msgid "Password Reset Successful"
 msgstr "Reimpostazione password riuscita"
 
 #: apps/remix/app/components/forms/signup.tsx
-#: apps/remix/app/components/general/claim-account.tsx
 msgid "Password should not be common or based on personal information"
 msgstr "La password non deve essere comune o basata su informazioni personali"
 
@@ -6610,14 +6573,6 @@ msgstr "Posta in arrivo personale"
 #: packages/ui/primitives/document-flow/field-items-advanced-settings/checkbox-field.tsx
 msgid "Pick a number"
 msgstr "Scegli un numero"
-
-#: apps/remix/app/components/general/claim-account.tsx
-msgid "Pick a password"
-msgstr "Inserisci una password"
-
-#: apps/remix/app/components/general/user-profile-timur.tsx
-msgid "Pick any of the following agreements below and start signing to get started"
-msgstr "Scegli uno dei seguenti accordi e inizia a firmare per iniziare"
 
 #: apps/remix/app/components/general/folder/folder-card.tsx
 msgid "Pin"
@@ -6710,7 +6665,6 @@ msgstr "Inserisci un numero"
 
 #: apps/remix/app/components/forms/profile.tsx
 #: apps/remix/app/components/forms/signup.tsx
-#: apps/remix/app/components/general/claim-account.tsx
 msgid "Please enter a valid name."
 msgstr "Per favore inserisci un nome valido."
 
@@ -7137,7 +7091,6 @@ msgid "Redirecting"
 msgstr "Reindirizzamento"
 
 #: apps/remix/app/components/forms/signup.tsx
-#: apps/remix/app/components/general/claim-account.tsx
 msgid "Registration Successful"
 msgstr "Registrazione avvenuta con successo"
 
@@ -7561,10 +7514,6 @@ msgstr "Cerca documenti..."
 msgid "Search folders..."
 msgstr "Cerca cartelle..."
 
-#: packages/ui/components/common/language-switcher-dialog.tsx
-msgid "Search languages..."
-msgstr "Cerca lingue..."
-
 #: apps/remix/app/components/dialogs/webhook-create-dialog.tsx
 msgid "Secret"
 msgstr "Segreto"
@@ -7575,10 +7524,6 @@ msgstr "Segreto"
 #: apps/remix/app/routes/_authenticated+/settings+/security._index.tsx
 msgid "Security"
 msgstr "Sicurezza"
-
-#: apps/remix/app/components/general/admin-license-status-banner.tsx
-msgid "See Documentation"
-msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/admin+/documents.$id.tsx
 msgid "See the background jobs tab for the status"
@@ -7878,10 +7823,6 @@ msgstr "Invio..."
 msgid "Sent"
 msgstr "Inviato"
 
-#: apps/remix/app/components/general/claim-account.tsx
-msgid "Set a password"
-msgstr "Imposta una password"
-
 #: apps/remix/app/components/embed/authoring/configure-document-view.tsx
 msgid "Set up your document properties and recipient information"
 msgstr "Configura le proprietà del documento e le informazioni sui destinatari"
@@ -7946,7 +7887,6 @@ msgstr "Mostra modelli nel tuo profilo pubblico per il tuo pubblico da firmare e
 #: apps/remix/app/components/general/document-signing/document-signing-signature-field.tsx
 #: apps/remix/app/components/general/document/document-page-view-button.tsx
 #: apps/remix/app/components/general/user-profile-skeleton.tsx
-#: apps/remix/app/components/general/user-profile-timur.tsx
 #: apps/remix/app/components/tables/documents-table-action-button.tsx
 #: apps/remix/app/components/tables/documents-table-action-dropdown.tsx
 #: apps/remix/app/components/tables/inbox-table.tsx
@@ -9511,8 +9451,8 @@ msgid "To add members to this team, you must first add them to the organisation.
 msgstr ""
 
 #: apps/remix/app/components/dialogs/team-member-create-dialog.tsx
-msgid "To be able to add members to a team, you must first add them to the organisation. For more information, please see the <0>documentation</0>."
-msgstr "Per poter aggiungere membri a un team, devi prima aggiungerli all'organizzazione. Per ulteriori informazioni, consulta la <0>documentazione</0>."
+msgid "To be able to add members to a team, you must first add them to the organisation."
+msgstr ""
 
 #: apps/remix/app/components/dialogs/team-email-update-dialog.tsx
 msgid "To change the email you must remove and add a new email address."
@@ -10117,10 +10057,6 @@ msgstr "Utente non trovato."
 #: apps/remix/app/routes/_authenticated+/admin+/users.$id.tsx
 msgid "User Organisations"
 msgstr "Organizzazioni utente"
-
-#: apps/remix/app/components/forms/signup.tsx
-msgid "User profiles are here!"
-msgstr "I profili utente sono qui!"
 
 #: apps/remix/app/components/general/menu-switcher.tsx
 msgid "User settings"
@@ -11188,7 +11124,6 @@ msgid "You have successfully left this organisation."
 msgstr "Hai abbandonato con successo questa organizzazione."
 
 #: apps/remix/app/components/forms/signup.tsx
-#: apps/remix/app/components/general/claim-account.tsx
 msgid "You have successfully registered. Please verify your account by clicking on the link you received in the email."
 msgstr "Ti sei registrato con successo. Verifica il tuo account cliccando sul link ricevuto via email."
 

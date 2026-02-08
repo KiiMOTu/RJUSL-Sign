@@ -1,6 +1,5 @@
 import { Trans, useLingui } from '@lingui/react/macro';
 import {
-  ArrowRightIcon,
   CheckCircle2Icon,
   KeyRoundIcon,
   Loader2Icon,
@@ -8,7 +7,7 @@ import {
   XCircleIcon,
 } from 'lucide-react';
 import { DateTime } from 'luxon';
-import { Link, useRevalidator } from 'react-router';
+import { useRevalidator } from 'react-router';
 import { match } from 'ts-pattern';
 
 import type { TCachedLicense } from '@documenso/lib/types/license';
@@ -60,14 +59,6 @@ export const AdminLicenseCard = ({ licenseData }: AdminLicenseCardProps) => {
                   <Trans>No License Configured</Trans>
                 </p>
               )}
-
-              <Link
-                to="https://docs.documenso.com/users/licenses/enterprise-edition"
-                target="_blank"
-                className="flex flex-row items-center text-xs text-muted-foreground hover:text-muted-foreground/80"
-              >
-                <Trans>Learn more</Trans> <ArrowRightIcon className="h-3 w-3" />
-              </Link>
             </div>
           </div>
         </CardMetric>

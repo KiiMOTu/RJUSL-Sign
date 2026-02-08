@@ -72,7 +72,8 @@ COPY --from=builder /app/out/package-lock.json ./package-lock.json
 COPY --from=builder /app/lingui.config.ts ./lingui.config.ts
 COPY --from=builder /app/patches ./patches
 
-RUN npm ci
+RUN npm ci --only=production
+RUN npm install @prisma/client
 
 # Then copy all the source code (as it changes more often)
 COPY --from=builder /app/out/full/ .
@@ -90,13 +91,7 @@ FROM base AS runner
 
 ENV HUSKY 0
 ENV DOCKER_OUTPUT 1
-
-# Telemetry credentials (baked into image at build time, can be disabled at runtime)
-ARG NEXT_PRIVATE_TELEMETRY_KEY=""
-ENV NEXT_PRIVATE_TELEMETRY_KEY="$NEXT_PRIVATE_TELEMETRY_KEY"
-
-ARG NEXT_PRIVATE_TELEMETRY_HOST=""
-ENV NEXT_PRIVATE_TELEMETRY_HOST="$NEXT_PRIVATE_TELEMETRY_HOST"
+ENV NODE_ENV production
 
 # Don't run production as root
 RUN addgroup --system --gid 1001 nodejs
@@ -112,7 +107,7 @@ COPY --from=builder --chown=nodejs:nodejs /app/out/full/packages/tailwind-config
 # Copy the patches across
 COPY --from=builder --chown=nodejs:nodejs /app/patches ./patches
 
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 # Automatically leverage output traces to reduce image size
 # https://nodejs.org/docs/advanced-features/output-file-tracing
