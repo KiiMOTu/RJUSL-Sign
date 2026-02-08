@@ -230,10 +230,7 @@ export const SignUpForm = ({
           </h1>
 
           <p className="mt-2 text-xs text-muted-foreground md:text-sm">
-            <Trans>
-              Create your account and start using state-of-the-art document signing. Open and
-              beautiful signing is within your grasp.
-            </Trans>
+            <Trans>Fill in your details to create an account.</Trans>
           </p>
         </div>
 

@@ -5,8 +5,6 @@ import type { MessageDescriptor } from '@lingui/core';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { Trans } from '@lingui/react/macro';
-import { browserSupportsWebAuthn, startAuthentication } from '@simplewebauthn/browser';
-import { KeyRoundIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { FaIdCardClip } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
@@ -17,7 +15,6 @@ import { z } from 'zod';
 import { authClient } from '@documenso/auth/client';
 import { AuthenticationErrorCode } from '@documenso/auth/server/lib/errors/error-codes';
 import { AppError } from '@documenso/lib/errors/app-error';
-import { trpc } from '@documenso/trpc/react';
 import { ZCurrentPasswordSchema } from '@documenso/trpc/server/auth-router/schema';
 import { cn } from '@documenso/ui/lib/utils';
 import { Button } from '@documenso/ui/primitives/button';
@@ -100,8 +97,6 @@ export const SignInForm = ({
 
   const hasSocialAuthEnabled = isGoogleSSOEnabled || isMicrosoftSSOEnabled || isOIDCSSOEnabled;
 
-  const [isPasskeyLoading, setIsPasskeyLoading] = useState(false);
-
   const redirectPath = useMemo(() => {
     // Handle SSR
     if (typeof window === 'undefined') {
@@ -117,9 +112,6 @@ export const SignInForm = ({
 
     return url.toString();
   }, [returnTo]);
-
-  const { mutateAsync: createPasskeySigninOptions } =
-    trpc.auth.passkey.createSigninOptions.useMutation();
 
   const form = useForm<TSignInFormSchema>({
     values: {
@@ -152,61 +144,6 @@ export const SignInForm = ({
     }
 
     setTwoFactorAuthenticationMethod(method);
-  };
-
-  const onSignInWithPasskey = async () => {
-    if (!browserSupportsWebAuthn()) {
-      toast({
-        title: _(msg`Not supported`),
-        description: _(msg`Passkeys are not supported on this browser`),
-        duration: 10000,
-        variant: 'destructive',
-      });
-
-      return;
-    }
-
-    try {
-      setIsPasskeyLoading(true);
-
-      const { options, sessionId } = await createPasskeySigninOptions();
-
-      const credential = await startAuthentication({ optionsJSON: options });
-
-      await authClient.passkey.signIn({
-        credential: JSON.stringify(credential),
-        csrfToken: sessionId,
-        redirectPath,
-      });
-    } catch (err) {
-      setIsPasskeyLoading(false);
-
-      // Error from library.
-      if (err instanceof Error && err.name === 'NotAllowedError') {
-        return;
-      }
-
-      const error = AppError.parseError(err);
-
-      const errorMessage = match(error.code)
-        .with(
-          AuthenticationErrorCode.NotSetup,
-          () =>
-            msg`This passkey is not configured for this application. Please login and add one in the user settings.`,
-        )
-        .with(
-          AuthenticationErrorCode.SessionExpired,
-          () => msg`This session has expired. Please try again.`,
-        )
-        .otherwise(() => handleFallbackErrorMessages(error.code));
-
-      toast({
-        title: _(msg`Something went wrong`),
-        description: _(errorMessage),
-        duration: 10000,
-        variant: 'destructive',
-      });
-    }
   };
 
   const onFormSubmit = async ({ email, password, totpCode, backupCode }: TSignInFormSchema) => {
@@ -328,10 +265,7 @@ export const SignInForm = ({
         className={cn('flex w-full flex-col gap-y-4', className)}
         onSubmit={form.handleSubmit(onFormSubmit)}
       >
-        <fieldset
-          className="flex w-full flex-col gap-y-4"
-          disabled={isSubmitting || isPasskeyLoading}
-        >
+        <fieldset className="flex w-full flex-col gap-y-4" disabled={isSubmitting}>
           <FormField
             control={form.control}
             name="email"
@@ -445,19 +379,6 @@ export const SignInForm = ({
               )}
             </>
           )}
-
-          <Button
-            type="button"
-            size="lg"
-            variant="outline"
-            disabled={isSubmitting}
-            loading={isPasskeyLoading}
-            className="border bg-background text-muted-foreground"
-            onClick={onSignInWithPasskey}
-          >
-            {!isPasskeyLoading && <KeyRoundIcon className="-ml-1 mr-1 h-5 w-5" />}
-            <Trans>Passkey</Trans>
-          </Button>
         </fieldset>
       </form>
 

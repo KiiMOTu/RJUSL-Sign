@@ -2327,6 +2327,10 @@ msgstr "Limit znaków"
 msgid "Charts"
 msgstr "Wykresy"
 
+#: apps/remix/app/routes/_profile+/p.$url.tsx
+msgid "Check back later for available documents."
+msgstr ""
+
 #: apps/remix/app/components/dialogs/ai-field-detection-dialog.tsx
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-fields-drag-drop.tsx
 #: packages/lib/utils/fields.ts
@@ -2947,6 +2951,7 @@ msgid "Create team"
 msgstr "Utwórz zespół"
 
 #: apps/remix/app/components/dialogs/team-create-dialog.tsx
+#: apps/remix/app/components/general/org-menu-switcher.tsx
 msgid "Create Team"
 msgstr "Utwórz zespół"
 
@@ -2966,14 +2971,6 @@ msgstr "Utwórz webhook"
 #: apps/remix/app/components/dialogs/webhook-create-dialog.tsx
 msgid "Create Webhook"
 msgstr "Utwórz webhook"
-
-#: apps/remix/app/routes/_recipient+/sign.$token+/complete.tsx
-msgid "Create your account and start using state-of-the-art document signing."
-msgstr "Utwórz konto i skorzystaj z najnowocześniejszego rozwiązania do podpisywania dokumentów."
-
-#: apps/remix/app/components/forms/signup.tsx
-msgid "Create your account and start using state-of-the-art document signing. Open and beautiful signing is within your grasp."
-msgstr "Utwórz konto i zacznij korzystać z nowoczesnego podpisywania dokumentów. Otwarty i piękny podpis jest w zasięgu ręki."
 
 #: apps/remix/app/components/dialogs/public-profile-template-manage-dialog.tsx
 #: apps/remix/app/components/general/document/document-page-view-information.tsx
@@ -4397,6 +4394,10 @@ msgstr "Wpisz kod weryfikacyjny"
 msgid "Enter your brand details"
 msgstr "Wpisz szczegóły marki"
 
+#: apps/remix/app/routes/_unauthenticated+/signin.tsx
+msgid "Enter your credentials to continue."
+msgstr ""
+
 #: apps/remix/app/components/general/claim-account.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-complete-dialog.tsx
 msgid "Enter your email"
@@ -4778,6 +4779,10 @@ msgstr "Plik nie może być większy niż {APP_DOCUMENT_UPLOAD_SIZE_LIMIT} MB"
 msgid "Fill in the details to create a new subscription claim."
 msgstr "Uzupełnił szczegóły, aby utworzyć nową subskrypcję."
 
+#: apps/remix/app/components/forms/signup.tsx
+msgid "Fill in your details to create an account."
+msgstr ""
+
 #: apps/remix/app/components/dialogs/document-move-to-folder-dialog.tsx
 #: apps/remix/app/components/dialogs/envelopes-bulk-move-dialog.tsx
 #: apps/remix/app/components/dialogs/template-move-to-folder-dialog.tsx
@@ -5064,6 +5069,10 @@ msgstr "Tutaj możesz ustawić ogólne ustawienia brandingu."
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.document.tsx
 msgid "Here you can set your general document preferences."
 msgstr "Tutaj możesz ustawić ogólne ustawienia dokumentów."
+
+#: apps/remix/app/routes/_authenticated+/dashboard.tsx
+msgid "Here's an overview of your account."
+msgstr ""
 
 #: apps/remix/app/components/dialogs/template-direct-link-dialog.tsx
 msgid "Here's how it works:"
@@ -5969,10 +5978,6 @@ msgstr "Nazwa jest wymagana"
 msgid "Name Settings"
 msgstr "Ustawienia nazwy"
 
-#: apps/remix/app/routes/_recipient+/sign.$token+/complete.tsx
-msgid "Need to sign documents?"
-msgstr "Potrzebujesz podpisać dokumenty?"
-
 #: packages/ui/components/recipient/recipient-role-select.tsx
 msgid "Needs to approve"
 msgstr "Musi zatwierdzić"
@@ -6175,10 +6180,6 @@ msgstr "Brak (odziedzicz metodę uwierzytelniania)"
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/templates.$id._index.tsx
 msgid "Not found"
 msgstr "Strona nie została znaleziona"
-
-#: apps/remix/app/components/forms/signin.tsx
-msgid "Not supported"
-msgstr "Nieobsługiwane"
 
 #: apps/remix/app/components/tables/documents-table-empty-state.tsx
 #: apps/remix/app/components/tables/documents-table-empty-state.tsx
@@ -6475,7 +6476,6 @@ msgctxt "Subscription status"
 msgid "Paid"
 msgstr "Opłacona"
 
-#: apps/remix/app/components/forms/signin.tsx
 #: apps/remix/app/components/general/document-signing/document-signing-auth-dialog.tsx
 msgid "Passkey"
 msgstr "Klucz dostępu"
@@ -6500,10 +6500,6 @@ msgstr "Klucz dostępu"
 #: apps/remix/app/components/dialogs/passkey-create-dialog.tsx
 msgid "Passkeys allow you to sign in and authenticate using biometrics, password managers, etc."
 msgstr "Klucze dostępu pozwalają na logowanie i uwierzytelnianie za pomocą biometrii, menedżerów haseł itp."
-
-#: apps/remix/app/components/forms/signin.tsx
-msgid "Passkeys are not supported on this browser"
-msgstr "Klucze dostępu nie są obsługiwane w tej przeglądarce"
 
 #: apps/remix/app/components/forms/reset-password.tsx
 #: apps/remix/app/components/forms/signin.tsx
@@ -8217,7 +8213,6 @@ msgstr "Niektórym podpisującym nie przypisano pola podpisu. Przypisz co najmni
 #: apps/remix/app/components/dialogs/template-direct-link-dialog.tsx
 #: apps/remix/app/components/embed/embed-direct-template-client-page.tsx
 #: apps/remix/app/components/embed/embed-document-signing-page-v1.tsx
-#: apps/remix/app/components/forms/signin.tsx
 #: apps/remix/app/components/general/billing-plans.tsx
 #: apps/remix/app/components/general/billing-plans.tsx
 #: apps/remix/app/components/general/direct-template/direct-template-page.tsx
@@ -8659,6 +8654,8 @@ msgstr "Adres URL zespołu"
 msgid "Team URL"
 msgstr "Adres URL zespołu"
 
+#: apps/remix/app/components/general/org-menu-switcher.tsx
+#: apps/remix/app/components/general/org-menu-switcher.tsx
 #: apps/remix/app/components/tables/admin-organisation-overview-table.tsx
 #: apps/remix/app/components/tables/organisation-insights-table.tsx
 #: apps/remix/app/components/tables/organisation-insights-table.tsx
@@ -9395,18 +9392,10 @@ msgstr "Organizacja oraz wszystkie powiązane dane zostaną trwale usunięte."
 msgid "This passkey has already been registered."
 msgstr "Ten klucz dostępu został już zarejestrowany."
 
-#: apps/remix/app/components/forms/signin.tsx
-msgid "This passkey is not configured for this application. Please login and add one in the user settings."
-msgstr "Ten klucz dostępu nie jest skonfigurowany. Zaloguj się i dodaj go w ustawieniach użytkownika."
-
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-fields-page.tsx
 #: packages/ui/primitives/document-flow/add-fields.tsx
 msgid "This recipient can no longer be modified as they have signed a field, or completed the document."
 msgstr "Nie możesz edytować odbiorcy, ponieważ podpisał pole lub zakończył dokument."
-
-#: apps/remix/app/components/forms/signin.tsx
-msgid "This session has expired. Please try again."
-msgstr "Sesja wygasła. Spróbuj ponownie."
 
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-recipient-form.tsx
 #: packages/ui/primitives/document-flow/add-signers.tsx
@@ -10766,14 +10755,6 @@ msgstr "Webhooki"
 msgid "Welcome"
 msgstr "Witaj"
 
-#: apps/remix/app/routes/_unauthenticated+/signin.tsx
-msgid "Welcome back, we are lucky to have you."
-msgstr "Witaj ponownie. Mamy szczęście, że Cię mamy."
-
-#: apps/remix/app/routes/_authenticated+/dashboard.tsx
-msgid "Welcome back! Here's an overview of your account."
-msgstr "Witaj z powrotem! Oto podsumowanie Twojego konta."
-
 #: apps/remix/app/routes/_unauthenticated+/o.$orgUrl.signin.tsx
 msgid "Welcome to {organisationName}"
 msgstr "Witaj w organizacji {organisationName}"
@@ -10812,10 +10793,6 @@ msgstr "Korzystając z naszej platformy w celu umieszczenia podpisu elektroniczn
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 msgid "Whether to enable the SSO portal for your organisation"
 msgstr "Czy chcesz włączyć logowanie SSO dla Twojej organizacji?"
-
-#: apps/remix/app/routes/_profile+/p.$url.tsx
-msgid "While waiting for them to do so you can create your own RJUSL Signing account and get started with document signing right away."
-msgstr ""
 
 #: apps/remix/app/components/dialogs/organisation-create-dialog.tsx
 msgid "Whitelabeling, unlimited members and more"

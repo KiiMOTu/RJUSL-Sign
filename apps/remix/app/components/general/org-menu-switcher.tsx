@@ -1,9 +1,9 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { Trans } from '@lingui/react/macro';
-import { ChevronsUpDown } from 'lucide-react';
+import { ChevronsUpDown, PlusIcon, SettingsIcon, UsersIcon } from 'lucide-react';
 import { Link } from 'react-router';
 
 import { authClient } from '@documenso/auth/client';
@@ -17,7 +17,12 @@ import { canExecuteOrganisationAction } from '@documenso/lib/utils/organisations
 import { extractInitials } from '@documenso/lib/utils/recipient-formatter';
 import { canExecuteTeamAction } from '@documenso/lib/utils/teams';
 import { cn } from '@documenso/ui/lib/utils';
-import { AvatarWithText } from '@documenso/ui/primitives/avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  AvatarWithText,
+} from '@documenso/ui/primitives/avatar';
 import { Button } from '@documenso/ui/primitives/button';
 import {
   DropdownMenu,
@@ -32,12 +37,27 @@ import { useOptionalCurrentTeam } from '~/providers/team';
 export const OrgMenuSwitcher = () => {
   const { _ } = useLingui();
 
-  const { user } = useSession();
+  const { user, organisations } = useSession();
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const isUserAdmin = isAdmin(user);
 
   const currentOrganisation = useOptionalCurrentOrganisation();
   const currentTeam = useOptionalCurrentTeam();
+
+  const allTeams = useMemo(() => {
+    return organisations.flatMap((org) =>
+      org.teams.map((team) => ({
+        ...team,
+        organisationUrl: org.url,
+        organisationName: org.name,
+        currentOrganisationRole: org.currentOrganisationRole,
+      })),
+    );
+  }, [organisations]);
+
+  const firstOrgUrl = organisations[0]?.url;
 
   const formatAvatarFallback = (name?: string) => {
     if (name !== undefined) {
@@ -77,7 +97,7 @@ export const OrgMenuSwitcher = () => {
   }, [currentTeam, currentOrganisation, user]);
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
         <Button
           data-testid="menu-switcher"
@@ -98,58 +118,171 @@ export const OrgMenuSwitcher = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        className={cn('z-[60] ml-6 w-full min-w-[12rem] md:ml-0')}
+        className={cn('z-[60] ml-6 w-full md:ml-0', {
+          'min-w-[12rem]': allTeams.length === 0,
+          'md:min-w-[32rem]': allTeams.length > 0,
+        })}
         align="end"
         forceMount
       >
-        {isUserAdmin && (
-          <DropdownMenuItem className="px-4 py-2 text-muted-foreground" asChild>
-            <Link to="/admin">
-              <Trans>Admin panel</Trans>
-            </Link>
-          </DropdownMenuItem>
-        )}
+        <div className="flex">
+          {/* Left column: Teams (hidden on mobile if no teams) */}
+          {allTeams.length > 0 && (
+            <div className="hidden max-h-[20rem] min-w-0 flex-1 overflow-y-auto md:block md:border-r">
+              <div className="px-3 py-2">
+                <p className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <UsersIcon className="h-3.5 w-3.5" />
+                  <Trans>Teams</Trans>
+                </p>
+              </div>
 
-        {currentOrganisation &&
-          canExecuteOrganisationAction(
-            'MANAGE_ORGANISATION',
-            currentOrganisation.currentOrganisationRole,
-          ) && (
-            <DropdownMenuItem className="px-4 py-2 text-muted-foreground" asChild>
-              <Link to={`/o/${currentOrganisation.url}/settings`}>
-                <Trans>Organisation settings</Trans>
-              </Link>
-            </DropdownMenuItem>
+              {allTeams.map((team) => (
+                <DropdownMenuItem key={team.id} className="group px-3 py-2" asChild>
+                  <Link to={`/t/${team.url}`}>
+                    <div className="flex w-full items-center gap-2">
+                      <Avatar className="h-7 w-7 flex-shrink-0 border border-solid">
+                        {team.avatarImageId && (
+                          <AvatarImage src={formatAvatarUrl(team.avatarImageId)} />
+                        )}
+                        <AvatarFallback className="text-xs text-gray-400">
+                          {team.name.slice(0, 1).toUpperCase()}
+                        </AvatarFallback>
+                      </Avatar>
+
+                      <div className="min-w-0 flex-1">
+                        <p
+                          className={cn('truncate text-sm', {
+                            'font-semibold': currentTeam?.id === team.id,
+                          })}
+                        >
+                          {team.name}
+                        </p>
+                        <p className="truncate text-xs text-muted-foreground">
+                          {team.organisationName}
+                        </p>
+                      </div>
+
+                      {canExecuteTeamAction('MANAGE_TEAM', team.currentTeamRole) && (
+                        <Link
+                          to={`/t/${team.url}/settings`}
+                          className="hidden flex-shrink-0 text-muted-foreground opacity-0 transition-opacity hover:text-foreground group-hover:opacity-100 md:block"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setIsOpen(false);
+                          }}
+                        >
+                          <SettingsIcon className="h-3.5 w-3.5" />
+                        </Link>
+                      )}
+                    </div>
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+
+              {firstOrgUrl && (
+                <>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="px-3 py-2" asChild>
+                    <Link to={`/o/${firstOrgUrl}/settings/teams?action=add-team`}>
+                      <PlusIcon className="mr-1.5 h-4 w-4" />
+                      <Trans>Create Team</Trans>
+                    </Link>
+                  </DropdownMenuItem>
+                </>
+              )}
+            </div>
           )}
 
-        {currentTeam && canExecuteTeamAction('MANAGE_TEAM', currentTeam.currentTeamRole) && (
-          <DropdownMenuItem className="px-4 py-2 text-muted-foreground" asChild>
-            <Link to={`/t/${currentTeam.url}/settings`}>
-              <Trans>Team settings</Trans>
-            </Link>
-          </DropdownMenuItem>
-        )}
+          {/* Right column: Settings (always visible) */}
+          <div className={cn('min-w-[12rem]', { 'md:min-w-[14rem]': allTeams.length > 0 })}>
+            {/* Mobile-only: show teams inline */}
+            {allTeams.length > 0 && (
+              <div className="md:hidden">
+                <div className="px-3 py-2">
+                  <p className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                    <UsersIcon className="h-3.5 w-3.5" />
+                    <Trans>Teams</Trans>
+                  </p>
+                </div>
 
-        <DropdownMenuItem className="px-4 py-2 text-muted-foreground" asChild>
-          <Link to="/inbox">
-            <Trans>Personal Inbox</Trans>
-          </Link>
-        </DropdownMenuItem>
+                {allTeams.map((team) => (
+                  <DropdownMenuItem key={team.id} className="px-3 py-2" asChild>
+                    <Link to={`/t/${team.url}`}>
+                      <div className="flex items-center gap-2">
+                        <Avatar className="h-6 w-6 flex-shrink-0 border border-solid">
+                          {team.avatarImageId && (
+                            <AvatarImage src={formatAvatarUrl(team.avatarImageId)} />
+                          )}
+                          <AvatarFallback className="text-xs text-gray-400">
+                            {team.name.slice(0, 1).toUpperCase()}
+                          </AvatarFallback>
+                        </Avatar>
+                        <span
+                          className={cn('truncate text-sm', {
+                            'font-semibold': currentTeam?.id === team.id,
+                          })}
+                        >
+                          {team.name}
+                        </span>
+                      </div>
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
 
-        <DropdownMenuItem className="px-4 py-2 text-muted-foreground" asChild>
-          <Link to="/settings/profile">
-            <Trans>Account</Trans>
-          </Link>
-        </DropdownMenuItem>
+                <DropdownMenuSeparator />
+              </div>
+            )}
 
-        <DropdownMenuSeparator />
+            {isUserAdmin && (
+              <DropdownMenuItem className="px-4 py-2 text-muted-foreground" asChild>
+                <Link to="/admin">
+                  <Trans>Admin panel</Trans>
+                </Link>
+              </DropdownMenuItem>
+            )}
 
-        <DropdownMenuItem
-          className="px-4 py-2 text-destructive/90 hover:!text-destructive"
-          onSelect={async () => authClient.signOut()}
-        >
-          <Trans>Sign Out</Trans>
-        </DropdownMenuItem>
+            {currentOrganisation &&
+              canExecuteOrganisationAction(
+                'MANAGE_ORGANISATION',
+                currentOrganisation.currentOrganisationRole,
+              ) && (
+                <DropdownMenuItem className="px-4 py-2 text-muted-foreground" asChild>
+                  <Link to={`/o/${currentOrganisation.url}/settings`}>
+                    <Trans>Organisation settings</Trans>
+                  </Link>
+                </DropdownMenuItem>
+              )}
+
+            {currentTeam && canExecuteTeamAction('MANAGE_TEAM', currentTeam.currentTeamRole) && (
+              <DropdownMenuItem className="px-4 py-2 text-muted-foreground" asChild>
+                <Link to={`/t/${currentTeam.url}/settings`}>
+                  <Trans>Team settings</Trans>
+                </Link>
+              </DropdownMenuItem>
+            )}
+
+            <DropdownMenuItem className="px-4 py-2 text-muted-foreground" asChild>
+              <Link to="/inbox">
+                <Trans>Personal Inbox</Trans>
+              </Link>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem className="px-4 py-2 text-muted-foreground" asChild>
+              <Link to="/settings/profile">
+                <Trans>Account</Trans>
+              </Link>
+            </DropdownMenuItem>
+
+            <DropdownMenuSeparator />
+
+            <DropdownMenuItem
+              className="px-4 py-2 text-destructive/90 hover:!text-destructive"
+              onSelect={async () => authClient.signOut()}
+            >
+              <Trans>Sign Out</Trans>
+            </DropdownMenuItem>
+          </div>
+        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );

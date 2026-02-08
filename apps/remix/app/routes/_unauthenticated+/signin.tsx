@@ -75,7 +75,7 @@ export default function SignIn({ loaderData }: Route.ComponentProps) {
         </h1>
 
         <p className="mt-2 text-sm text-muted-foreground">
-          <Trans>Welcome back, we are lucky to have you.</Trans>
+          <Trans>Enter your credentials to continue.</Trans>
         </p>
         <hr className="-mx-6 my-4" />
 
