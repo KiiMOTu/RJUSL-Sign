@@ -8,7 +8,6 @@ import {
   Lock,
   Settings2Icon,
   User,
-  Users,
   WebhookIcon,
 } from 'lucide-react';
 import { useLocation } from 'react-router';
@@ -133,19 +132,6 @@ export const SettingsDesktopNav = ({ className, ...props }: SettingsDesktopNavPr
           </Link>
         </>
       )}
-
-      <Link to="/settings/organisations">
-        <Button
-          variant="ghost"
-          className={cn(
-            'w-full justify-start',
-            pathname?.startsWith('/settings/organisations') && 'bg-secondary',
-          )}
-        >
-          <Users className="mr-2 h-5 w-5" />
-          <Trans>Organisations</Trans>
-        </Button>
-      </Link>
 
       {IS_BILLING_ENABLED() && hasManageableBillingOrgs && (
         <Link to={isPersonalLayoutMode ? '/settings/billing-personal' : `/settings/billing`}>
